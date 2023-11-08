@@ -22,11 +22,16 @@ describe("main page", () => {
     cy.visit("http://qamid.tmweb.ru/");
     cy.get(dataTests.selectors.days).should("have.length", 7);
     cy.get(dataTests.selectors.days).eq(1).click();
-    cy.get(dataTests.selectors.movie).last().contains("16:00").click();
+    cy.get(
+      ":nth-child(3) > :nth-child(2) > .movie-seances__list > .movie-seances__time-block"
+    )
+      .last()
+      .contains("12:00")
+      .click();
 
     cy.fixture("hallNames").then((halls) => {
       cy.get(dataTests.selectors.buyingHall)
-        .contains(halls.hall2)
+        .contains(halls.hall4)
         .should("be.visible");
     });
 
